@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: gold_monthly_drug_revenue
+    description: "Monthly revenue by drug and pharmacy region — feeds the sales dashboard."
+    columns:
+      - name: drug_id
+        tests: [not_null]
+
+  - name: gold_drug_safety_scorecard
+    description: "Adverse event rate per drug — feeds the safety/risk dashboard."
+    columns:
+      - name: drug_id
+        tests: [unique, not_null]
+
+  - name: gold_prescriber_activity
+    columns:
+      - name: doctor_id
+        tests: [unique, not_null]
+
+  - name: gold_pharmacy_performance
+    columns:
+      - name: pharmacy_id
+        tests: [unique, not_null]

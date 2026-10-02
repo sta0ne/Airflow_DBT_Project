@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: dim_drugs
+    columns:
+      - name: drug_id
+        tests: [unique, not_null]
+
+  - name: dim_patients
+    columns:
+      - name: patient_id
+        tests: [unique, not_null]
+
+  - name: fct_sales
+    columns:
+      - name: sale_id
+        tests: [unique, not_null]
+      - name: unit_price
+        tests: [not_null]
+      - name: total_amount
+        tests: [not_null]
+      - name: drug_id
+        tests:
+          - relationships: {to: ref('dim_drugs'), field: drug_id}
+      - name: pharmacy_id
+        tests:
+          - relationships: {to: ref('dim_pharmacies'), field: pharmacy_id}
+
+  - name: fct_prescriptions
+    columns:
+      - name: prescription_id
+        tests: [unique, not_null]
+      - name: patient_id
+        tests:
+          - relationships: {to: ref('dim_patients'), field: patient_id}
+      - name: doctor_id
+        tests:
+          - relationships: {to: ref('dim_doctors'), field: doctor_id}
+
+  - name: fct_adverse_events
+    columns:
+      - name: event_id
+        tests: [unique, not_null]
+      - name: patient_id
+        tests:
+          - relationships: {to: ref('dim_patients'), field: patient_id}
