@@ -9,7 +9,7 @@ with full change-history tracking via dbt snapshots.
 
 ## Architecture
 
-![Pharma Data Pipeline Architecture](architecture.svg)
+![Pharma Data Pipeline Architecture](https://github.com/sta0ne/Airflow_DBT_Project/blob/main/Architechture%20(2).png)
 
 Raw data lands in Databricks, is mirrored into `silver_technical`, then branches
 two ways: into `silver_business` (current-state dimensions and facts) and into
